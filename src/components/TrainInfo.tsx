@@ -7,9 +7,10 @@ import { Badge } from "@/components/ui/badge";
 interface TrainInfoProps {
   train: Train;
   showExitInfo?: boolean;
+  stopIndex?: number; // Index of this train in the route
 }
 
-const TrainInfo: React.FC<TrainInfoProps> = ({ train, showExitInfo = false }) => {
+const TrainInfo: React.FC<TrainInfoProps> = ({ train, showExitInfo = false, stopIndex = 0 }) => {
   return (
     <div className="flex items-center">
       <TrainLine trainLine={train.line} />
@@ -17,14 +18,19 @@ const TrainInfo: React.FC<TrainInfoProps> = ({ train, showExitInfo = false }) =>
         <span className="text-sm flex items-center">
           <span className="font-medium text-gold">{train.stops}</span> 
           <span className="ml-1 text-muted-foreground">stop{train.stops !== 1 ? 's' : ''}</span>
-          {showExitInfo && (
-            <Badge variant="outline" className="ml-2 border-gold text-gold text-xs">
+        </span>
+        {showExitInfo && (
+          <div className="flex flex-col">
+            <Badge variant="outline" className="mt-1 border-gold text-gold text-xs">
+              Board at entrance #{stopIndex + 1}
+            </Badge>
+            <Badge variant="outline" className="mt-1 border-gold text-gold text-xs">
               Exit at stop #{train.stops}
             </Badge>
-          )}
-        </span>
+          </div>
+        )}
         {train.delay > 0 && (
-          <span className="text-xs text-red-500 font-medium">
+          <span className="text-xs text-red-500 font-medium mt-1">
             {train.delay} min delay
           </span>
         )}

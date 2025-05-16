@@ -6,6 +6,7 @@ import TrainInfo from "@/components/TrainInfo";
 import RouteMap from "@/components/RouteMap";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
+import { TrainFront } from "lucide-react";
 
 interface RouteDisplayProps {
   routes: Route[];
@@ -52,7 +53,7 @@ const RouteDisplay: React.FC<RouteDisplayProps> = ({ routes, isLoading }) => {
                 <span className="font-semibold text-lg text-gold flex items-center">
                   Route {index + 1}
                   {index === 0 && (
-                    <Badge className="ml-2 bg-gold text-black text-xs">Fastest</Badge>
+                    <Badge className="ml-2 bg-gold/80 text-black text-xs">Fastest</Badge>
                   )}
                 </span>
                 <p className="text-sm text-muted-foreground">
@@ -68,11 +69,25 @@ const RouteDisplay: React.FC<RouteDisplayProps> = ({ routes, isLoading }) => {
             {/* Route Map */}
             <RouteMap route={route} />
             
+            {/* Journey details */}
+            <div className="mb-6 mt-4 bg-secondary/50 p-3 rounded-md border border-gold/20">
+              <div className="flex items-center mb-2">
+                <TrainFront size={18} className="text-green-500 mr-2" />
+                <span className="text-gold font-medium">BOARD AT:</span>
+                <span className="ml-2 text-white">{route.startingStation}</span>
+              </div>
+              <div className="flex items-center">
+                <TrainFront size={18} className="text-red-500 mr-2" />
+                <span className="text-gold font-medium">EXIT AT:</span>
+                <span className="ml-2 text-white">{route.endingStation}</span>
+              </div>
+            </div>
+            
             {/* Detailed train information */}
             <div className="flex flex-wrap items-center gap-4 mb-4">
               {route.trains.map((train, tIndex) => (
                 <React.Fragment key={tIndex}>
-                  <TrainInfo train={train} showExitInfo={true} />
+                  <TrainInfo train={train} showExitInfo={true} stopIndex={tIndex} />
                   {tIndex < route.trains.length - 1 && (
                     <span className="text-gold">→</span>
                   )}
@@ -81,14 +96,8 @@ const RouteDisplay: React.FC<RouteDisplayProps> = ({ routes, isLoading }) => {
             </div>
             
             <div className="text-sm border-t border-gold/30 pt-3 mt-2">
-              <p className="mb-1">
-                <span className="font-medium text-gold">Start:</span> {route.startingStation}
-              </p>
-              <p>
-                <span className="font-medium text-gold">End:</span> {route.endingStation}
-              </p>
               <p className="mt-1 text-muted-foreground italic text-xs">
-                Commute time includes an average of 2 minutes per stop and {route.transfers * 5} minutes for transfers
+                Fare: $2.75 per ride • Commute includes {route.transfers * 5} min for transfers
               </p>
             </div>
           </CardContent>

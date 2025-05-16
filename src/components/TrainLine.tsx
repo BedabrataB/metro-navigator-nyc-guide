@@ -11,7 +11,7 @@ const TrainLine: React.FC<TrainLineProps> = ({ trainLine }) => {
   
   return (
     <div 
-      className={`${bgColor} w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm border-2 border-gold`}
+      className={`${bgColor} w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm border-2 border-gold/80 shadow-md`}
     >
       {trainLine}
     </div>

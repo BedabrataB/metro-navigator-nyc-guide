@@ -64,9 +64,9 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				gold: {
-					DEFAULT: '#FFD700',
-					light: '#FFEC99',
-					dark: '#B7950B'
+					DEFAULT: '#BFA46F', // Matte gold instead of bright gold
+					light: '#D4C08E', // Lighter matte gold
+					dark: '#9C7A3C' // Darker matte gold
 				}
 			},
 			borderRadius: {
