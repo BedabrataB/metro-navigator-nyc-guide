@@ -44,7 +44,6 @@ export function getTrainLineColor(line: string): string {
   
   return colors[line] || "bg-gray-400";
 }
-
 // Common NYC stations
 export const commonStations: string[] = [
   "Times Square",
@@ -66,7 +65,15 @@ export const commonStations: string[] = [
   "Barclays Center",
   "Jamaica Center",
   "Yankee Stadium",
-  "World Trade Center"
+  "World Trade Center",
+  "Lexington Av/59 St",
+  "Bryant Park",
+  "34 St–Hudson Yards",
+  "Houston Street",
+  "Bedford Avenue",
+  "Astoria–Ditmars Blvd",
+  "Rockefeller Center",
+  "Delancey St–Essex St"
 ];
 
 // Map of which lines serve which stations (simplified)
@@ -90,5 +97,13 @@ export const stationLines: Record<string, string[]> = {
   "Barclays Center": ["2", "3", "4", "5", "B", "D", "N", "Q", "R"],
   "Jamaica Center": ["E", "J", "Z"],
   "Yankee Stadium": ["4", "B", "D"],
-  "World Trade Center": ["1", "A", "C", "E", "R", "W"]
+  "World Trade Center": ["1", "A", "C", "E", "R", "W"],
+  "Lexington Av/59 St": ["4", "5", "6", "N", "R", "W"],
+  "Bryant Park": ["B", "D", "F", "M", "7"],
+  "34 St–Hudson Yards": ["7"],
+  "Houston Street": ["1"],
+  "Bedford Avenue": ["L"],
+  "Astoria–Ditmars Blvd": ["N", "W"],
+  "Rockefeller Center": ["B", "D", "F", "M"],
+  "Delancey St–Essex St": ["F", "J", "M", "Z"]
 };
